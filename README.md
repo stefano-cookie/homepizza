@@ -1,66 +1,215 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# HomePizza - Dashboard amministrativa per bot Telegram
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+HomePizza è un'applicazione full-stack che permette a utenti autenticati di accedere a una dashboard web dalla quale è possibile interagire con un chatbot Telegram. Attraverso la dashboard, gli amministratori possono:
 
-## About Laravel
+- Visualizzare i messaggi ricevuti dal bot Telegram in tempo reale
+- Inviare risposte ai messaggi direttamente dalla dashboard
+- Gestire tutte le conversazioni in modo centralizzato
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Screenshot
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+![Dashboard HomePizza](/screenshots/dashboard.png)
+(Inserisci screenshot quando disponibili)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Tecnologie Utilizzate 🔧
 
-## Learning Laravel
+- **Backend**: Laravel 12
+- **Frontend**: React con Inertia.js + TailwindCSS
+- **Database**: SQLite (configurabile anche per MySQL/PostgreSQL)
+- **API**: Telegram Bot API (via irazasyed/telegram-bot-sdk)
+- **Real-time**: Laravel Echo + Pusher
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Architettura del Sistema 🏗️
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+L'applicazione è strutturata secondo il seguente schema:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. **Sistema di Autenticazione**: 
+   - Implementato con Laravel Breeze e Sanctum
+   - Protezione dell'accesso alla dashboard amministrativa
+   - Sistema di login/registrazione per amministratori
 
-## Laravel Sponsors
+2. **Bot Telegram**: 
+   - Riceve messaggi dagli utenti su Telegram
+   - Invia le risposte fornite dalla dashboard
+   - Webhook configurato per ricevere aggiornamenti in tempo reale
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+3. **Database**: 
+   - Memorizza utenti, chat e messaggi
+   - Persistenza dei dati delle conversazioni
+   - Tracciamento degli utenti Telegram
 
-### Premium Partners
+4. **API REST**: 
+   - Consente alla dashboard di comunicare con il backend
+   - Endpoint per ottenere chat, messaggi e inviare risposte
+   - Protezione CSRF e autenticazione Sanctum
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+5. **Dashboard React**: 
+   - Interfaccia utente reattiva e moderna
+   - Visualizzazione delle chat e dei messaggi
+   - Aggiornamenti in tempo reale tramite WebSockets
 
-## Contributing
+## Struttura del Database 🗄️
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+L'applicazione utilizza tre tabelle principali:
 
-## Code of Conduct
+1. **users**: Gestisce gli utenti dell'applicazione (amministratori del bot)
+2. **telegram_chats**: Memorizza le informazioni sulle chat Telegram
+3. **telegram_messages**: Archivia tutti i messaggi scambiati, sia in entrata che in uscita
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Requisiti di Sistema 📋
 
-## Security Vulnerabilities
+- PHP >= 8.2
+- Composer
+- Node.js e npm
+- SQLite, MySQL o PostgreSQL
+- Account Telegram e bot creato via [BotFather](https://t.me/BotFather)
+- Account Pusher per WebSockets (gratuito per sviluppo)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Installazione 🚀
 
-## License
+1. **Clonare il repository**
+   ```bash
+   git clone https://github.com/tuonome/homepizza.git
+   cd homepizza
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+2. **Installare le dipendenze PHP**
+   ```bash
+   composer install
+   ```
+
+3. **Configurare le variabili d'ambiente**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+
+4. **Configurare il database in .env**
+   ```
+   DB_CONNECTION=sqlite
+   # Oppure configura MySQL/PostgreSQL se preferisci
+   ```
+
+5. **Configurare Telegram**
+   ```
+   TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+   ```
+
+6. **Configurare Pusher per i WebSockets in .env**
+   ```
+   BROADCAST_DRIVER=pusher
+   PUSHER_APP_ID=your_pusher_app_id
+   PUSHER_APP_KEY=your_pusher_app_key
+   PUSHER_APP_SECRET=your_pusher_app_secret
+   PUSHER_APP_CLUSTER=eu
+   ```
+
+7. **Creare il database (se si utilizza SQLite)**
+   ```bash
+   touch database/database.sqlite
+   ```
+
+8. **Eseguire le migrazioni**
+   ```bash
+   php artisan migrate
+   ```
+
+9. **Installare le dipendenze JavaScript**
+   ```bash
+   npm install
+   ```
+
+10. **Compilare gli asset**
+    ```bash
+    npm run build
+    ```
+
+## Configurazione del Bot Telegram 🤖
+
+1. Creare un nuovo bot su Telegram usando [BotFather](https://t.me/BotFather)
+2. Ottenere il token del bot e aggiungerlo al file `.env`
+3. Configurare il webhook per il bot (richiede un URL pubblicamente accessibile):
+   ```bash
+   https://api.telegram.org/bot{TOKEN}/setWebhook?url={URL_PUBBLICO}/api/telegram/webhook
+   ```
+
+Per test in locale, è possibile utilizzare [ngrok](https://ngrok.com/) per creare un tunnel temporaneo:
+```bash
+ngrok http 8000
+```
+
+## Avvio dell'applicazione 🏃‍♂️
+
+1. **Avvio del server di sviluppo**
+   ```bash
+   php artisan serve
+   ```
+
+2. **In una finestra di terminale separata, avviare il frontend (se in modalità sviluppo)**
+   ```bash
+   npm run dev
+   ```
+
+3. **Accedere all'applicazione**
+   Visita `http://localhost:8000` nel tuo browser
+
+4. **Registra un account amministratore**
+   Clicca "Nuovo Admin" nella pagina iniziale per creare un account
+
+## Utilizzo 📱
+
+1. Accedi alla dashboard con le tue credenziali
+2. Sulla sinistra vedrai la lista delle chat attive con utenti Telegram
+3. Seleziona una chat per visualizzare i messaggi nella sezione centrale
+4. Utilizza il campo di input in basso per inviare risposte agli utenti
+
+## Struttura del progetto 📁
+
+```
+homepizza/
+├── app/                        # Logica dell'applicazione
+│   ├── Events/                 # Eventi (per WebSockets)
+│   ├── Http/
+│   │   ├── Controllers/        # Controller dell'applicazione
+│   │   ├── Middleware/         # Middleware personalizzati
+│   ├── Models/                 # Modelli Eloquent
+├── config/                     # File di configurazione
+├── database/                   # Migrazioni e seeder
+├── public/                     # File pubblici 
+├── resources/                  # Asset frontend
+│   ├── css/                    # Stili CSS/Tailwind
+│   ├── js/                     # Componenti React
+│   │   ├── Components/         # Componenti riutilizzabili
+│   │   ├── Layouts/            # Layout dell'applicazione
+│   │   ├── Pages/              # Pagine React per Inertia.js
+├── routes/                     # Definizioni delle rotte
+└── storage/                    # File di storage
+```
+
+## Funzionalità WebSockets 📡
+
+L'applicazione utilizza Pusher per fornire aggiornamenti in tempo reale alla dashboard quando arrivano nuovi messaggi. Questo è implementato tramite:
+
+1. Un evento Laravel (`NewTelegramMessage`) che viene trasmesso quando arriva un nuovo messaggio
+2. Un canale privato per ogni chat (`chat.{id}`)
+3. Sottoscrizione lato client tramite Laravel Echo
+
+## Contribuire 🤝
+
+Le contribuzioni sono benvenute! Per favore, segui questi passaggi:
+
+1. Forka il repository
+2. Crea un branch per la tua feature (`git checkout -b feature/amazing-feature`)
+3. Committa i tuoi cambiamenti (`git commit -m 'Add some amazing feature'`)
+4. Pusha al branch (`git push origin feature/amazing-feature`)
+5. Apri una Pull Request
+
+## License 📄
+
+Questo progetto è rilasciato sotto la Licenza MIT - vedi il file LICENSE per i dettagli.
+
+## Contatti 📨
+
+Nome - [La tua email] - Email
+
+Link al progetto: [https://github.com/tuonome/homepizza](https://github.com/tuonome/homepizza)
