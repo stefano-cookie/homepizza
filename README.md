@@ -6,10 +6,8 @@ HomePizza è un'applicazione full-stack che permette a utenti autenticati di acc
 - Inviare risposte ai messaggi direttamente dalla dashboard
 - Gestire tutte le conversazioni in modo centralizzato
 
-## Screenshot
+![homepizza_screen](https://github.com/user-attachments/assets/3cb5d9c8-54a1-4063-be9f-74be493a3c8c)
 
-![Dashboard HomePizza](/screenshots/dashboard.png)
-(Inserisci screenshot quando disponibili)
 
 ## Tecnologie Utilizzate 🔧
 
@@ -19,7 +17,7 @@ HomePizza è un'applicazione full-stack che permette a utenti autenticati di acc
 - **API**: Telegram Bot API (via irazasyed/telegram-bot-sdk)
 - **Real-time**: Laravel Echo + Pusher
 
-## Architettura del Sistema 🏗️
+## Architettura del Sistema
 
 L'applicazione è strutturata secondo il seguente schema:
 
@@ -48,7 +46,7 @@ L'applicazione è strutturata secondo il seguente schema:
    - Visualizzazione delle chat e dei messaggi
    - Aggiornamenti in tempo reale tramite WebSockets
 
-## Struttura del Database 🗄️
+## Struttura del Database
 
 L'applicazione utilizza tre tabelle principali:
 
@@ -69,7 +67,7 @@ L'applicazione utilizza tre tabelle principali:
 
 1. **Clonare il repository**
    ```bash
-   git clone https://github.com/tuonome/homepizza.git
+   git clone https://github.com/stefano-cookie/homepizza.git
    cd homepizza
    ```
 
@@ -138,7 +136,7 @@ Per test in locale, è possibile utilizzare [ngrok](https://ngrok.com/) per crea
 ngrok http 8000
 ```
 
-## Avvio dell'applicazione 🏃‍♂️
+## Avvio dell'applicazione
 
 1. **Avvio del server di sviluppo**
    ```bash
@@ -156,7 +154,7 @@ ngrok http 8000
 4. **Registra un account amministratore**
    Clicca "Nuovo Admin" nella pagina iniziale per creare un account
 
-## Utilizzo 📱
+## Utilizzo
 
 1. Accedi alla dashboard con le tue credenziali
 2. Sulla sinistra vedrai la lista delle chat attive con utenti Telegram
@@ -186,7 +184,7 @@ homepizza/
 └── storage/                    # File di storage
 ```
 
-## Funzionalità WebSockets 📡
+## Funzionalità WebSockets
 
 L'applicazione utilizza Pusher per fornire aggiornamenti in tempo reale alla dashboard quando arrivano nuovi messaggi. Questo è implementato tramite:
 
@@ -194,22 +192,12 @@ L'applicazione utilizza Pusher per fornire aggiornamenti in tempo reale alla das
 2. Un canale privato per ogni chat (`chat.{id}`)
 3. Sottoscrizione lato client tramite Laravel Echo
 
-## Contribuire 🤝
-
-Le contribuzioni sono benvenute! Per favore, segui questi passaggi:
-
-1. Forka il repository
-2. Crea un branch per la tua feature (`git checkout -b feature/amazing-feature`)
-3. Committa i tuoi cambiamenti (`git commit -m 'Add some amazing feature'`)
-4. Pusha al branch (`git push origin feature/amazing-feature`)
-5. Apri una Pull Request
-
 ## License 📄
 
 Questo progetto è rilasciato sotto la Licenza MIT - vedi il file LICENSE per i dettagli.
 
 ## Contatti 📨
 
-Nome - [La tua email] - Email
+Stefano Priolo - [stefanojpriolo@gmail.com] - Email
 
-Link al progetto: [https://github.com/tuonome/homepizza](https://github.com/tuonome/homepizza)
+Link al progetto: [https://github.com/stefano-cookie/homepizza.git](https://github.com/stefano-cookie/homepizza.git)
